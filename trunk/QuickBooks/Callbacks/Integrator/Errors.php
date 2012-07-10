@@ -136,6 +136,9 @@ class QuickBooks_Callbacks_Integrator_Errors
 			case QUICKBOOKS_ADD_INVENTORYITEM:
 				
 				break;
+			case QUICKBOOKS_ADD_INVENTORYASSEMBLYITEM:
+
+				break;
 			case QUICKBOOKS_ADD_SERVICEITEM:
 				
 				
