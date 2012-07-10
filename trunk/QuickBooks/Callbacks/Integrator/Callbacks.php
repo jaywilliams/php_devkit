@@ -749,6 +749,9 @@ class QuickBooks_Callbacks_Integrator_Callbacks
 			case QUICKBOOKS_OBJECT_INVENTORYITEM:
 				
 				return $API->addInventoryItem($Product, 'QuickBooks_Callbacks_Integrator_Callbacks::addInventoryItem', $ProductID);
+			case QUICKBOOKS_OBJECT_INVENTORYASSEMBLYITEM:
+
+				return $API->addInventoryAssemblyItem($Product, 'QuickBooks_Callbacks_Integrator_Callbacks::addInventoryAssemblyItem', $ProductID);
 			case QUICKBOOKS_OBJECT_NONINVENTORYITEM:
 				
 				return $API->addNonInventoryItem($Product, 'QuickBooks_Callbacks_Integrator_Callbacks::addNonInventoryItem', $ProductID);
@@ -983,6 +986,9 @@ class QuickBooks_Callbacks_Integrator_Callbacks
 					break;
 				case QUICKBOOKS_OBJECT_INVENTORYITEM:
 					return $API->addInventoryItem($Product, 'QuickBooks_Callbacks_Integrator_Callbacks::addInventoryItem', $ID);
+					break;
+				case QUICKBOOKS_OBJECT_INVENTORYASSEMBLYITEM:
+					return $API->addInventoryAssemblyItem($Product, 'QuickBooks_Callbacks_Integrator_Callbacks::addInventoryAssemblyItem', $ID);
 					break;
 				case QUICKBOOKS_OBJECT_NONINVENTORYITEM:
 					return $API->addNonInventoryItem($Product, 'QuickBooks_Callbacks_Integrator_Callbacks::addNonInventoryItem', $ID);
@@ -1300,6 +1306,22 @@ class QuickBooks_Callbacks_Integrator_Callbacks
 		}
 	}
 	
+	static public function addInventoryAssemblyItem($method, $action, $ID, &$err, $qbxml, $InventoryAssemblyItem, $qbres)
+	{
+		$API = QuickBooks_API_Singleton::getInstance();
+
+		if (is_object($InventoryAssemblyItem))
+		{
+			// If we found the customer in QuickBooks, create a mapping with the ListID value
+
+			$API->createMapping(
+				QUICKBOOKS_OBJECT_INVENTORYASSEMBLYITEM,
+				$ID,
+				$InventoryAssemblyItem->getListID(),
+				$InventoryAssemblyItem->getEditSequence());
+		}
+	}
+
 	static public function addNonInventoryItem($method, $action, $ID, &$err, $qbxml, $NonInventoryItem, $qbres)
 	{
 		$API = QuickBooks_API_Singleton::getInstance();

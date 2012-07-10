@@ -2510,6 +2510,84 @@ class QuickBooks_Callbacks_SQL_Callbacks
 	}
 	
 
+    /**
+     *
+     *
+     *
+     */
+    public static function ItemInventoryAssemblyAddRequest($requestID, $user, $action, $ID, $extra, &$err, $last_action_time, $last_actionident_time, $version, $locale, $config = array())
+    {
+    	$Driver = QuickBooks_Driver_Singleton::getInstance();
+    	if ($Account = $Driver->get(QUICKBOOKS_DRIVER_SQL_PREFIX_SQL . 'iteminventoryassembly', array( QUICKBOOKS_DRIVER_SQL_FIELD_ID => $ID )))
+    	{
+    		return QuickBooks_Callbacks_SQL_Callbacks::_AddRequest(QUICKBOOKS_OBJECT_INVENTORYASSEMBLYITEM, $Account, $requestID, $user, $action, $ID, $extra, $err, $last_action_time, $last_actionident_time, $version, $locale, $config);
+    	}
+
+    	return '';
+    }
+
+    /**
+     *
+     *
+     *
+     */
+    public static function ItemInventoryAssemblyAddResponse($requestID, $user, $action, $ID, $extra, &$err, $last_action_time, $last_actionident_time, $xml, $idents, $config = array() )
+    {
+    	$Driver = QuickBooks_Driver_Singleton::getInstance();
+    	$Parser = new QuickBooks_XML_Parser($xml);
+
+    	$errnum = 0;
+    	$errmsg = '';
+    	$Doc = $Parser->parse($errnum, $errmsg);
+    	$Root = $Doc->getRoot();
+
+    	$List = $Root->getChildAt('QBXML QBXMLMsgsRs ItemInventoryAssemblyAddRs');
+
+    	$extra['IsAddResponse'] = true;
+    	$extra['is_add_response'] = true;
+    	QuickBooks_Callbacks_SQL_Callbacks::_QueryResponse(QUICKBOOKS_OBJECT_INVENTORYASSEMBLYITEM, $List, $requestID, $user, $action, $ID, $extra, $err, $last_action_time, $last_actionident_time, $xml, $idents, $config);
+
+    	//$Driver->queueEnqueue($user, QUICKBOOKS_QUERY_INVENTORYADJUSTMENT, md5(__FILE__), true, QuickBooks_Utilities::priorityForAction(QUICKBOOKS_QUERY_INVENTORYADJUSTMENT));
+    }
+
+    /**
+     *
+     *
+     *
+     */
+    public static function ItemInventoryAssemblyModRequest($requestID, $user, $action, $ID, $extra, &$err, $last_action_time, $last_actionident_time, $version, $locale, $config = array())
+    {
+    	$Driver = QuickBooks_Driver_Singleton::getInstance();
+    	if ($Account = $Driver->get(QUICKBOOKS_DRIVER_SQL_PREFIX_SQL . 'iteminventoryassembly', array( QUICKBOOKS_DRIVER_SQL_FIELD_ID => $ID )))
+    	{
+    		return QuickBooks_Callbacks_SQL_Callbacks::_AddRequest(QUICKBOOKS_OBJECT_INVENTORYASSEMBLYITEM, $Account, $requestID, $user, $action, $ID, $extra, $err, $last_action_time, $last_actionident_time, $version, $locale, $config);
+    	}
+
+    	return '';
+    }
+
+    /**
+     *
+     *
+     *
+     */
+    public static function ItemInventoryAssemblyModResponse($requestID, $user, $action, $ID, $extra, &$err, $last_action_time, $last_actionident_time, $xml, $idents, $config = array() )
+    {
+    	$Parser = new QuickBooks_XML_Parser($xml);
+
+    	$errnum = 0;
+    	$errmsg = '';
+    	$Doc = $Parser->parse($errnum, $errmsg);
+    	$Root = $Doc->getRoot();
+
+    	$List = $Root->getChildAt('QBXML QBXMLMsgsRs ItemInventoryAssemblyModRs');
+
+    	$extra['IsModResponse'] = true;
+    	$extra['is_mod_response'] = true;
+    	QuickBooks_Callbacks_SQL_Callbacks::_QueryResponse(QUICKBOOKS_OBJECT_INVENTORYASSEMBLYITEM, $List, $requestID, $user, $action, $ID, $extra, $err, $last_action_time, $last_actionident_time, $xml, $idents, $config);
+    }
+
+
 	/**
 	 * 
 	 * 
