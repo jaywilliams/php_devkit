@@ -885,7 +885,17 @@ class QuickBooks_Callbacks_API_Callbacks
 	{
 		return QuickBooks_Callbacks_API_Callbacks::_doAddResponse($requestID, $user, $action, $ID, $extra, $err, $last_action_time, $last_actionident_time, $xml, $idents);
 	}
+
+	public static function ItemInventoryAssemblyAddRequest($requestID, $user, $action, $ID, $extra, &$err, $last_action_time, $last_actionident_time, $version, $locale, $config = array(), $qbxml = null)
+	{
+		return QuickBooks_Callbacks_API_Callbacks::_doAddRequest($requestID, $user, $action, $ID, $extra, $err, $last_action_time, $last_actionident_time, $version, $locale, $config, $qbxml);
+	}
 	
+	public static function ItemInventoryAssemblyAddResponse($requestID, $user, $action, $ID, $extra, &$err, $last_action_time, $last_actionident_time, $xml, $idents)
+	{
+		return QuickBooks_Callbacks_API_Callbacks::_doAddResponse($requestID, $user, $action, $ID, $extra, $err, $last_action_time, $last_actionident_time, $xml, $idents);
+	}
+
 	public static function ItemNonInventoryAddRequest($requestID, $user, $action, $ID, $extra, &$err, $last_action_time, $last_actionident_time, $version, $locale, $config = array(), $qbxml = null)
 	{
 		return QuickBooks_Callbacks_API_Callbacks::_doAddRequest($requestID, $user, $action, $ID, $extra, $err, $last_action_time, $last_actionident_time, $version, $locale, $config, $qbxml);
@@ -1253,6 +1263,16 @@ class QuickBooks_Callbacks_API_Callbacks
 	}
 	
 	public static function ItemInventoryQueryResponse($requestID, $user, $action, $ID, $extra, &$err, $last_action_time, $last_actionident_time, $xml, $idents)
+	{
+		return QuickBooks_Callbacks_API_Callbacks::_doQueryResponse($requestID, $user, $action, $ID, $extra, $err, $last_action_time, $last_actionident_time, $xml, $idents);
+	}
+
+	public static function ItemInventoryAssemblyQueryRequest($requestID, $user, $action, $ID, $extra, &$err, $last_action_time, $last_actionident_time, $version, $locale, $config = array(), $qbxml = null)
+	{
+		return QuickBooks_Callbacks_API_Callbacks::_doQueryRequest($requestID, $user, $action, $ID, $extra, $err, $last_action_time, $last_actionident_time, $version, $locale, $config, $qbxml);
+	}
+
+	public static function ItemInventoryAssemblyQueryResponse($requestID, $user, $action, $ID, $extra, &$err, $last_action_time, $last_actionident_time, $xml, $idents)
 	{
 		return QuickBooks_Callbacks_API_Callbacks::_doQueryResponse($requestID, $user, $action, $ID, $extra, $err, $last_action_time, $last_actionident_time, $xml, $idents);
 	}
