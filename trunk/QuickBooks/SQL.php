@@ -38,6 +38,11 @@ class QuickBooks_SQL
 	/**
 	 *
 	 */
+	const HOOK_SQL_INVENTORYASSEMBLY = 'QuickBooks_SQL sql-inventoryassembly';
+
+	/**
+	 *
+	 */
 	const HOOK_QUICKBOOKS_INSERT = 'QuickBooks_SQL quickbooks-insert';
 	
 	/**
