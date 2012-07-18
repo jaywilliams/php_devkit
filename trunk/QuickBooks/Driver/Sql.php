@@ -2254,8 +2254,6 @@ abstract class QuickBooks_Driver_Sql extends QuickBooks_Driver
 			app_username = '%s' AND 
 			app_tenant = '%s' ", $errnum, $errmsg, null, null, array( $app_username, $app_tenant ));
 		
-		print('ran with username ' . $app_username . ' and tenant ' . $app_tenant);
-		
 		return $this->affected() > 0;
 	}	
 	
@@ -3394,8 +3392,17 @@ abstract class QuickBooks_Driver_Sql extends QuickBooks_Driver
 			}
 			else
 			{*/
-				$set[] = $field . " = '" . $this->_escape($value) . "' ";
+			//	$set[] = $field . " = '" . $this->_escape($value) . "' ";
 			//}
+			
+			if (is_null($value))
+			{
+				$set[] = $field . " = NULL ";
+			}
+			else
+			{
+				$set[] = $field . " = '" . $this->_escape($value) . "' ";
+			}
 		}
 		
 		$wheres = array();
@@ -3523,7 +3530,7 @@ abstract class QuickBooks_Driver_Sql extends QuickBooks_Driver
 		{
 			$fields[] = $field;
 			
-			if (ctype_digit($value) && strlen((float) $value) == strlen($value) && ((float)$value) == $value)
+			if (ctype_digit($value) and strlen((float) $value) == strlen($value) and ((float)$value) == $value)
 			{
 				// Number, cast as float to avoid integer overflow
                 $values[] = (float) $value;
@@ -3555,6 +3562,15 @@ abstract class QuickBooks_Driver_Sql extends QuickBooks_Driver
 		}
 		
 		$sql .= " ); ";
+		
+		/*
+		if ($table == 'pricemodel_tierset')
+		{
+			print_r($object);
+			print($sql);
+			exit;
+		}
+		*/
 		
 		$errnum = 0;
 		$errmsg = '';
