@@ -227,12 +227,12 @@ class QuickBooks_QBXML_Schema_Object_ItemInventoryAssemblyAddRq extends QuickBoo
 		17 => 'PrefVendorRef FullName',
 		18 => 'AssetAccountRef ListID',
 		19 => 'AssetAccountRef FullName',
-		20 => 'BuildPoint' => 999.99,
-		21 => 'QuantityOnHand' => 999.99,
-		22 => 'TotalValue' => 999.99,
-		23 => 'InventoryDate' => 999.99,
+		20 => 'BuildPoint',
+		21 => 'QuantityOnHand',
+		22 => 'TotalValue',
+		23 => 'InventoryDate',
 		// ItemInventoryAssemblyLine?
-		24 => 'IncludeRetElement' => 999.99,
+		24 => 'IncludeRetElement',
 		);
 
 		return $paths;
