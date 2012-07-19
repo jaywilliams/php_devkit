@@ -670,14 +670,18 @@ class QuickBooks_Callbacks_SQL_Callbacks
 			<QBXML>
 				<QBXMLMsgsRq onError="stopOnError">
 					<GeneralSummaryReportQueryRq requestID="' . $requestID . '">
-					
+
 						<GeneralSummaryReportType>InventoryStockStatusByItem</GeneralSummaryReportType>
 						<DisplayReport>false</DisplayReport>
-					
+
+						<ReportItemFilter>
+							<ItemTypeFilter>Inventory</ItemTypeFilter>
+						</ReportItemFilter>
+
 					</GeneralSummaryReportQueryRq>
 				</QBXMLMsgsRq>
 			</QBXML>';
-			
+
 		return $xml;
 	}
 	
