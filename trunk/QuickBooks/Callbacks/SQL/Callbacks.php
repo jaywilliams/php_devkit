@@ -9529,6 +9529,10 @@ class QuickBooks_Callbacks_SQL_Callbacks
 					if (substr($key, -4, 4) == 'line')
 					{
 						$order = array( 'SortOrder' => 'ASC', 'TxnLineID' => 'ASC' );
+						if ($key == 'iteminventoryassembly_iteminventoryassemblyline')
+						{
+							unset($order['TxnLineID']);
+						}
 					}
 					
 					$obj = new QuickBooks_SQL_Object($table, null);
@@ -9566,6 +9570,10 @@ class QuickBooks_Callbacks_SQL_Callbacks
 					if (substr($key, -4, 4) == 'line')
 					{
 						$order = array( 'SortOrder' => 'ASC', 'TxnLineID' => 'ASC' );
+						if ($key == 'iteminventoryassembly_iteminventoryassemblyline')
+						{
+							unset($order['TxnLineID']);
+						}
 					}
 					
 					//print_r($multipart);
