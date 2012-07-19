@@ -8448,6 +8448,7 @@ class QuickBooks_Callbacks_SQL_Callbacks
 				case 'estimate_estimateline':
 				case 'bill_itemline':
 				case 'bill_expenseline':
+				case 'iteminventoryassembly_iteminventoryassemblyline':
 					$sort = ' SortOrder ASC ';
 					break;
 			}
