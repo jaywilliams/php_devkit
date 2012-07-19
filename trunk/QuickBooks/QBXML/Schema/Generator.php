@@ -31,7 +31,7 @@ class QuickBooks_QBXML_Schema_Generator
 	
 	public function saveAll($dir)
 	{
-		$Parser = new QuickBooks_XML($this->_xml);
+		$Parser = new QuickBooks_XML_Parser($this->_xml);
 		
 		$arr_actions_adds = QuickBooks_Utilities::listActions('*Add', false);
 		$arr_actions_mods = QuickBooks_Utilities::listActions('*Mod', false);
@@ -92,7 +92,7 @@ class QuickBooks_QBXML_Schema_Generator
 				
 				//$curdepth = 0;
 				$lastdepth = 0;
-				$paths = $Action->asArray(QUICKBOOKS_XML_ARRAY_PATHS);
+				$paths = $Action->asArray(QuickBooks_XML::ARRAY_PATHS);
 				foreach ($paths as $path => $datatype)
 				{
 					$tmp = explode(' ', $path);

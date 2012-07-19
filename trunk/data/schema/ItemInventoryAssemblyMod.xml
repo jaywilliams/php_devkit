@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?qbxml version="7.0"?>
+<QBXML>
+<QBXMLMsgsRq onError="stopOnError">
+<ItemInventoryAssemblyModRq>
+<ItemInventoryAssemblyMod> <!-- required -->
+<ListID >IDTYPE</ListID> <!-- required -->
+<EditSequence >STRTYPE</EditSequence> <!-- required -->
+<Name >STRTYPE</Name> <!-- optional -->
+<IsActive >BOOLTYPE</IsActive> <!-- optional -->
+<ParentRef> <!-- optional -->
+<ListID >IDTYPE</ListID> <!-- optional -->
+<FullName >STRTYPE</FullName> <!-- optional -->
+</ParentRef>
+<UnitOfMeasureSetRef> <!-- optional -->
+<ListID >IDTYPE</ListID> <!-- optional -->
+<FullName >STRTYPE</FullName> <!-- optional -->
+</UnitOfMeasureSetRef>
+<ForceUOMChange >BOOLTYPE</ForceUOMChange> <!-- optional -->
+<SalesTaxCodeRef> <!-- optional -->
+<ListID >IDTYPE</ListID> <!-- optional -->
+<FullName >STRTYPE</FullName> <!-- optional -->
+</SalesTaxCodeRef>
+<SalesDesc >STRTYPE</SalesDesc> <!-- optional -->
+<SalesPrice >PRICETYPE</SalesPrice> <!-- optional -->
+<IncomeAccountRef> <!-- optional -->
+<ListID >IDTYPE</ListID> <!-- optional -->
+<FullName >STRTYPE</FullName> <!-- optional -->
+</IncomeAccountRef>
+<ApplyIncomeAccountRefToExistingTxns >BOOLTYPE</ApplyIncomeAccountRefToExistingTxns> <!-- optional -->
+<PurchaseDesc >STRTYPE</PurchaseDesc> <!-- optional -->
+<PurchaseCost >PRICETYPE</PurchaseCost> <!-- optional -->
+<COGSAccountRef> <!-- optional -->
+<ListID >IDTYPE</ListID> <!-- optional -->
+<FullName >STRTYPE</FullName> <!-- optional -->
+</COGSAccountRef>
+<PrefVendorRef> <!-- optional -->
+<ListID >IDTYPE</ListID> <!-- optional -->
+<FullName >STRTYPE</FullName> <!-- optional -->
+</PrefVendorRef>
+<AssetAccountRef> <!-- optional -->
+<ListID >IDTYPE</ListID> <!-- optional -->
+<FullName >STRTYPE</FullName> <!-- optional -->
+</AssetAccountRef>
+<BuildPoint >QUANTYPE</BuildPoint> <!-- optional -->
+<!-- BEGIN OR -->
+<ClearItemsInGroup >BOOLTYPE</ClearItemsInGroup> <!-- optional -->
+<!-- OR -->
+<ItemInventoryAssemblyLine> <!-- optional, may repeat -->
+<ItemInventoryRef> <!-- required -->
+<ListID >IDTYPE</ListID> <!-- optional -->
+<FullName >STRTYPE</FullName> <!-- optional -->
+</ItemInventoryRef>
+<Quantity >QUANTYPE</Quantity> <!-- optional -->
+</ItemInventoryAssemblyLine>
+<!-- END OR -->
+</ItemInventoryAssemblyMod>
+<IncludeRetElement >STRTYPE</IncludeRetElement> <!-- optional, may repeat -->
+</ItemInventoryAssemblyModRq>
+<ItemInventoryAssemblyModRs statusCode="INTTYPE" statusSeverity="STRTYPE" statusMessage="STRTYPE">
+<ItemInventoryAssemblyRet> <!-- optional -->
+<ListID >IDTYPE</ListID> <!-- required -->
+<TimeCreated >DATETIMETYPE</TimeCreated> <!-- required -->
+<TimeModified >DATETIMETYPE</TimeModified> <!-- required -->
+<EditSequence >STRTYPE</EditSequence> <!-- required -->
+<Name >STRTYPE</Name> <!-- required -->
+<FullName >STRTYPE</FullName> <!-- required -->
+<IsActive >BOOLTYPE</IsActive> <!-- optional -->
+<ParentRef> <!-- optional -->
+<ListID >IDTYPE</ListID> <!-- optional -->
+<FullName >STRTYPE</FullName> <!-- optional -->
+</ParentRef>
+<Sublevel >INTTYPE</Sublevel> <!-- required -->
+<UnitOfMeasureSetRef> <!-- optional -->
+<ListID >IDTYPE</ListID> <!-- optional -->
+<FullName >STRTYPE</FullName> <!-- optional -->
+</UnitOfMeasureSetRef>
+<SalesTaxCodeRef> <!-- optional -->
+<ListID >IDTYPE</ListID> <!-- optional -->
+<FullName >STRTYPE</FullName> <!-- optional -->
+</SalesTaxCodeRef>
+<SalesDesc >STRTYPE</SalesDesc> <!-- optional -->
+<SalesPrice >PRICETYPE</SalesPrice> <!-- optional -->
+<IncomeAccountRef> <!-- optional -->
+<ListID >IDTYPE</ListID> <!-- optional -->
+<FullName >STRTYPE</FullName> <!-- optional -->
+</IncomeAccountRef>
+<PurchaseDesc >STRTYPE</PurchaseDesc> <!-- optional -->
+<PurchaseCost >PRICETYPE</PurchaseCost> <!-- optional -->
+<COGSAccountRef> <!-- optional -->
+<ListID >IDTYPE</ListID> <!-- optional -->
+<FullName >STRTYPE</FullName> <!-- optional -->
+</COGSAccountRef>
+<PrefVendorRef> <!-- optional -->
+<ListID >IDTYPE</ListID> <!-- optional -->
+<FullName >STRTYPE</FullName> <!-- optional -->
+</PrefVendorRef>
+<AssetAccountRef> <!-- optional -->
+<ListID >IDTYPE</ListID> <!-- optional -->
+<FullName >STRTYPE</FullName> <!-- optional -->
+</AssetAccountRef>
+<BuildPoint >QUANTYPE</BuildPoint> <!-- optional -->
+<QuantityOnHand >QUANTYPE</QuantityOnHand> <!-- optional -->
+<AverageCost >PRICETYPE</AverageCost> <!-- optional -->
+<QuantityOnOrder >QUANTYPE</QuantityOnOrder> <!-- optional -->
+<QuantityOnSalesOrder >QUANTYPE</QuantityOnSalesOrder> <!-- optional -->
+<ItemInventoryAssemblyLine> <!-- optional, may repeat -->
+<ItemInventoryRef> <!-- required -->
+<ListID >IDTYPE</ListID> <!-- optional -->
+<FullName >STRTYPE</FullName> <!-- optional -->
+</ItemInventoryRef>
+<Quantity >QUANTYPE</Quantity> <!-- optional -->
+</ItemInventoryAssemblyLine>
+<DataExtRet> <!-- optional, may repeat -->
+<OwnerID >GUIDTYPE</OwnerID> <!-- optional -->
+<DataExtName >STRTYPE</DataExtName> <!-- required -->
+<!-- DataExtType may have one of the following values: AMTTYPE, DATETIMETYPE, INTTYPE, PERCENTTYPE, PRICETYPE, QUANTYPE, STR1024TYPE, STR255TYPE -->
+<DataExtType >ENUMTYPE</DataExtType> <!-- required -->
+<DataExtValue >STRTYPE</DataExtValue> <!-- required -->
+</DataExtRet>
+</ItemInventoryAssemblyRet>
+</ItemInventoryAssemblyModRs>
+</QBXMLMsgsRq>
+</QBXML>
