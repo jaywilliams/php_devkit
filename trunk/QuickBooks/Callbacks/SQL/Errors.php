@@ -171,10 +171,10 @@ class QuickBooks_Callbacks_SQL_Errors
 				else if ($action == QUICKBOOKS_MOD_INVENTORYITEM and
 					$existing)
 				{
-					// Queue up the updated item from QB if it is newer
+					// Queue up the updated item from QB if the edit sequence is newer
 					$Driver->queueEnqueue(
 						$user,
-						QUICKBOOKS_IMPORT_INVENTORYITEM,
+						QUICKBOOKS_ADD_INVENTORYITEM,
 						$ident,
 						true,
 						9999,
@@ -183,10 +183,10 @@ class QuickBooks_Callbacks_SQL_Errors
 				else if ($action == QUICKBOOKS_MOD_INVENTORYASSEMBLYITEM and
 					$existing)
 				{
-					// Queue up the updated item from QB if it is newer
+					// Queue up the updated item from QB if the edit sequence is newer
 					$Driver->queueEnqueue(
 						$user,
-						QUICKBOOKS_IMPORT_INVENTORYASSEMBLYITEM,
+						QUICKBOOKS_ADD_INVENTORYASSEMBLYITEM,
 						$ident,
 						true,
 						9999,
