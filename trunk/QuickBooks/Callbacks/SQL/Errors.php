@@ -168,6 +168,30 @@ class QuickBooks_Callbacks_SQL_Errors
 						9999, 
 						array( 'TxnID' => $existing['TxnID'] ));					
 				}
+				else if ($action == QUICKBOOKS_MOD_INVENTORYITEM and
+					$existing)
+				{
+					// Queue up the updated item from QB if it is newer
+					$Driver->queueEnqueue(
+						$user,
+						QUICKBOOKS_IMPORT_INVENTORYITEM,
+						$ident,
+						true,
+						9999,
+						array( 'ListID' => $existing['ListID'] ));
+				}
+				else if ($action == QUICKBOOKS_MOD_INVENTORYASSEMBLYITEM and
+					$existing)
+				{
+					// Queue up the updated item from QB if it is newer
+					$Driver->queueEnqueue(
+						$user,
+						QUICKBOOKS_IMPORT_INVENTORYASSEMBLYITEM,
+						$ident,
+						true,
+						9999,
+						array( 'ListID' => $existing['ListID'] ));
+				}
 				
 				return true;
 			case 3120:
