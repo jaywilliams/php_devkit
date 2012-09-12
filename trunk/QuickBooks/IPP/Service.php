@@ -157,9 +157,31 @@ abstract class QuickBooks_IPP_Service
 		return $this->_findAll($Context, $realmID, $resource, null, null, null, null, $xml);
 	}
 	
-	public function rawAdd()
+	public function rawAdd($Context, $realmID, $xml, $resource = null)
 	{
+		$IPP = $Context->IPP();
 		
+		if (!$resource)
+		{
+			$resource = $this->_guessResource($xml, QuickBooks_IPP_IDS::OPTYPE_ADD);
+		}
+		
+		// Send the data to IPP 
+		$return = $IPP->IDS($Context, $realmID, $resource, QuickBooks_IPP_IDS::OPTYPE_ADD, $xml);
+		$this->_setLastRequestResponse($Context->lastRequest(), $Context->lastResponse());
+		$this->_setLastDebug($Context->lastDebug());
+		
+		if ($IPP->errorCode() != QuickBooks_IPP::ERROR_OK)
+		{
+			$this->_setError(
+				$IPP->errorCode(), 
+				$IPP->errorText(), 
+				$IPP->errorDetail());
+			
+			return false;
+		}
+		
+		return $return;
 	}
 	
 	protected function _map($list, $key, $value)
@@ -178,10 +200,21 @@ abstract class QuickBooks_IPP_Service
 		
 	}
 	
-	protected function _findAll($Context, $realmID, $resource, $query = null, $sort = null, $page = 1, $size = 50, $xml = '')
+	
+	/**
+	 * 
+	 * Returns false on error, and sets $IPP->errorCode, $IPP->errorText, and $IPP->errorDetail
+	 * 
+	 * Added $options array in 09/2012:
+	 *   Supported array keys for QuickBooks Desktop are:
+	 *     ActiveOnly       => true/false (False by default. May not be used with DeletedObjects)
+	 *     DeletedObjects   => true/false (False by default. May not be used with ActiveOnly)
+	 *   Supported array keys for QuickBooks Online are:
+	 *     (none yet)
+	 */
+	protected function _findAll($Context, $realmID, $resource, $query = null, $sort = null, $page = 1, $size = 50, $xml = '', $options = array())
 	{
 		$IPP = $Context->IPP();
-		
 		$flavor = $IPP->flavor();
 		
 		//print('flavor [' . $flavor . ']');
@@ -191,9 +224,19 @@ abstract class QuickBooks_IPP_Service
 		{
 			if (!$xml)
 			{
+				$options_string = '';
+				if ($options['ActiveOnly'])
+				{
+					$options_string = 'ActiveOnly="true" ';
+				}
+				else if ($options['DeletedObjects'])
+				{
+					$options_string = 'DeletedObjects="true" ';
+				}
+				
 				$xml = '';
 				$xml .= '<?xml version="1.0" encoding="UTF-8"?>' . QUICKBOOKS_CRLF;
-				$xml .= '<' . $resource . 'Query xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.intuit.com/sb/cdm/' . $IPP->version() . '">' . QUICKBOOKS_CRLF;
+				$xml .= '<' . $resource . 'Query '.$options_string.'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.intuit.com/sb/cdm/' . $IPP->version() . '">' . QUICKBOOKS_CRLF;
 				
 				if ($size)
 				{
@@ -208,7 +251,7 @@ abstract class QuickBooks_IPP_Service
 		}
 		else if ($flavor == QuickBooks_IPP_IDS::FLAVOR_ONLINE)
 		{
-			if (!$xml)
+		    if (!$xml)
 			{
 				if (is_array($query) and count($query) > 0)
 				{
