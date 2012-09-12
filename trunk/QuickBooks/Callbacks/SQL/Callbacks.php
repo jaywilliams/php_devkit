@@ -6678,9 +6678,8 @@ class QuickBooks_Callbacks_SQL_Callbacks
 			<?qbxml version="' . $version . '"?>
 			<QBXML>
 				<QBXMLMsgsRq onError="' . QUICKBOOKS_SERVER_SQL_ON_ERROR . '">
-					<ItemInventoryQueryRq requestID="' . $requestID . '" ' . QuickBooks_Callbacks_SQL_Callbacks::_buildIterator($extra) . '>
-						<ActiveStatus>All</ActiveStatus>
-						' . QuickBooks_Callbacks_SQL_Callbacks::_buildFilter($user, $action, $extra) . '
+					<ItemInventoryQueryRq requestID="' . $requestID . '">
+						<ListID>' . $extra['ListID'] . '</ListID>
 						' . QuickBooks_Callbacks_SQL_Callbacks::_requiredVersionForElement(2.0, $version, '<OwnerID>0</OwnerID>') . '
 					</ItemInventoryQueryRq>
 				</QBXMLMsgsRq>
