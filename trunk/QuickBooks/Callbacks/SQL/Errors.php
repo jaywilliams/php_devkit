@@ -82,6 +82,14 @@ class QuickBooks_Callbacks_SQL_Errors
 			case 1:		// These errors occur when we search for something and it doesn't exist
 			case 500:	// 	i.e. we query for invoices modified since xyz, but there are none that have been modified since then
 				
+				// When there are no changes to import,
+				// it's not an error, so don't treat it as such.
+				if ($action == QUICKBOOKS_IMPORT_INVENTORYITEM ||
+					$action == QUICKBOOKS_IMPORT_INVENTORYASSEMBLYITEM)
+				{
+					return true;
+				}
+
 				// This isn't really an error, just ignore it
 				
 				if ($action == QUICKBOOKS_DERIVE_CUSTOMER)
@@ -174,7 +182,7 @@ class QuickBooks_Callbacks_SQL_Errors
 					// Queue up the updated item from QB if the edit sequence is newer
 					$Driver->queueEnqueue(
 						$user,
-						QUICKBOOKS_ADD_INVENTORYITEM,
+						QUICKBOOKS_DERIVE_INVENTORYITEM,
 						$ident,
 						true,
 						9999,
@@ -186,7 +194,7 @@ class QuickBooks_Callbacks_SQL_Errors
 					// Queue up the updated item from QB if the edit sequence is newer
 					$Driver->queueEnqueue(
 						$user,
-						QUICKBOOKS_ADD_INVENTORYASSEMBLYITEM,
+						QUICKBOOKS_DERIVE_INVENTORYASSEMBLYITEM,
 						$ident,
 						true,
 						9999,

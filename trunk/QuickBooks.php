@@ -529,6 +529,7 @@ define('QUICKBOOKS_ADD_INVENTORYASSEMBLYITEM', 'ItemInventoryAssemblyAdd');
 define('QUICKBOOKS_MOD_INVENTORYASSEMBLYITEM', 'ItemInventoryAssemblyMod');
 define('QUICKBOOKS_QUERY_INVENTORYASSEMBLYITEM', 'ItemInventoryAssemblyQuery');
 define('QUICKBOOKS_IMPORT_INVENTORYASSEMBLYITEM', 'ItemInventoryAssemblyImport');
+define('QUICKBOOKS_DERIVE_INVENTORYASSEMBLYITEM', 'ItemInventoryAssemblyDerive');
 
 define('QUICKBOOKS_OBJECT_GROUPITEM', 'ItemGroup');
 define('QUICKBOOKS_ADD_GROUPITEM', 'ItemGroupAdd');
